@@ -1,8 +1,9 @@
 Flask
 Flask-SQLAlchemy
 Flask-Login
-
+Flask-Migrate
 
 SQLAlchemy
+Alembic
 
 python-dotenv

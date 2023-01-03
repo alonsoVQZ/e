@@ -1,4 +1,4 @@
-from .models import db
+from . import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -6,6 +6,10 @@ from sqlalchemy.sql import func
 
 class Account(db.Model, UserMixin):
     __tablename__ = 'Accounts'
+
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     
     id = db.Column(db.Integer, primary_key=True)
@@ -16,6 +20,8 @@ class Account(db.Model, UserMixin):
 
 
     personal_account = db.relationship('Personal_Account', back_populates='account', cascade="all, delete-orphan", uselist=False)
+
+    
     business_accounts = db.relationship('Business_Account', back_populates='account', cascade="all, delete-orphan")
 
 
@@ -33,10 +39,11 @@ class Account(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+
     def data(self):
         return {
-            self.id,
-            self.email,
-            self.personal_account,
-            self.business_accounts
+            "id": self.id,
+            "email": self.email,
+            "personal_account": self.personal_account.data(),
+            "business_accounts": [account.data() for account in self.business_accounts]
         }
