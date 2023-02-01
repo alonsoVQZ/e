@@ -1,0 +1,12 @@
+#SignInPersonalAccount {
+    width: 350px;
+    height: auto;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
+    padding: 20px 25px;
+    box-sizing: border-box;
+}
+
+.class-SignInForm {
+    display: flex;
+    flex-direction: column;
+}

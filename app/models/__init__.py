@@ -15,9 +15,7 @@ def add_prefix_for_prod(attr):
         return attr
 
 
-from .accounts import Account
-from .personal_accounts import Personal_Account
-from .business_accounts import Business_Account
+from .users import User
+from .sellers import Seller
 from .products import Product
-from .orders import Order
-from .produts_orders import Product_Order
+from .departments import Deparment

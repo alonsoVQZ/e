@@ -1,0 +1,42 @@
+
+#Header {
+    color: #ffffff;
+}
+
+#Header-d1 {
+    width: auto;
+    height: 60px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    background-color: #131921;
+}
+
+#Header-d1d3 {
+    display: flex;
+}
+
+#Header-n1 {
+    background-color: #232f3e;
+}
+
+#Header-n1ul1 {
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.Header-list {
+    margin: 5px 0px;
+    padding: 10px;
+}
+
+.headerspantop {
+    font-size: small;
+}
+
+.headerspanbot {
+    font-weight: 1000;
+    font-size: small;
+}
