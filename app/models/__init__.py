@@ -18,4 +18,4 @@ def add_prefix_for_prod(attr):
 from .users import User
 from .sellers import Seller
 from .products import Product
-from .departments import Deparment
+from .departments import Department

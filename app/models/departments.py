@@ -2,8 +2,8 @@ from . import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 
 
-class Deparment(db.Model):
-    __tablename__ = 'Deparments'
+class Department(db.Model):
+    __tablename__ = 'Departments'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

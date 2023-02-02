@@ -2,8 +2,23 @@ Flask
 Flask-SQLAlchemy
 Flask-Login
 Flask-Migrate
+Flask-Cors
+Flask-WTF
 
 SQLAlchemy
 Alembic
+Werkzeug
+Wtforms
 
 python-dotenv
+python-dateutil
+python-editor
+
+Greenlet
+Gunicorn
+Itsdangerous
+Jinja2
+Mako
+Markupsafe
+Six
+Click
