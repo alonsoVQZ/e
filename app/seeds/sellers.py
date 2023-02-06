@@ -1,6 +1,6 @@
 from app.models import db, environment, SCHEMA, Seller
 
-def seed_products():
+def seed_sellers():
     objects = [
         Seller(name = 'HP'),
         Seller(name = 'Dell'),
@@ -20,7 +20,7 @@ def seed_products():
     db.session.commit()
 
 
-def undo_products():
+def undo_sellers():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
     else:

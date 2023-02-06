@@ -1,0 +1,34 @@
+#FourItemsCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    width: 350px;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: pink;
+}
+
+#FourItemsCard-s1 {
+    width: 100%;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+#FourItemsCard-d1 {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 170px 170px;
+}
+
+.FourItemsCard-image {
+    height: 140px;
+    width: 140px;
+    overflow: hidden;
+}
+
+.FourItemsCard-span {
+    height: 140px;
+    width: 140px;
+}

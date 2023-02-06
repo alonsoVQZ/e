@@ -13,11 +13,16 @@ class User(db.Model, UserMixin):
 
     
     id = db.Column(db.Integer, primary_key=True)
+
+
     first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     hashed_password = db.Column(db.String(256), nullable=False)
     prime = db.Column(db.Boolean, nullable=False, default=False)
+
+
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
@@ -43,4 +48,11 @@ class User(db.Model, UserMixin):
             "last_name": self.last_name,
             "email": self.email,
             "prime": self.prime,
+        }
+    
+
+    def data_email(self):
+        return {
+            "id": self.id,
+            "email": self.email,
         }

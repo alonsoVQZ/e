@@ -19,3 +19,4 @@ from .users import User
 from .sellers import Seller
 from .products import Product
 from .departments import Department
+from .medias import Media
