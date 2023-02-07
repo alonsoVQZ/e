@@ -30,11 +30,11 @@ class Product(db.Model):
 
     def data(self):
         return {
-            self.id,
-            self.seller_id,
-            self.name,
-            self.price,
-            self.discount,
-            self.description,
-            self.stock,
+            "id": self.id,
+            "seller_id": self.seller_id,
+            "name": self.name,
+            "price": self.price,
+            "discount": self.discount,
+            "description": self.description,
+            "stock": self.stock,
         }

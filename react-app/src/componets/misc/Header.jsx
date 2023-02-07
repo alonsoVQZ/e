@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import SearchBar from "./SearchBar";
@@ -9,13 +9,15 @@ import CartBar from "./CartBar";
 import './style/Header.css'
 
 function Header() {
-    // const user = useSelector((state))
+    const navigate = useNavigate();
+
+    const handleLogo = () => navigate("/")
 
     return (
         <div id='Header'>
             <div id='Header-d1'>
                 <div id='Header-d1d1'>
-                    <img src="/amazon-logo-white.png" alt="" style={ { height: '40px' } } />
+                    <img src="/amazon-logo-white.png" alt="" style={ { height: '40px' } } onClick={ () => handleLogo() } />
                 </div>
                 <div id='Header-d1d2'>
                     <SearchBar />
