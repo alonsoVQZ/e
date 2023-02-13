@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style/FourItemsCard.css"
 
 function FourItemsCard({ title }) {
@@ -25,7 +25,6 @@ function Product() {
         const responseJSON = await response.json();
         if(responseJSON.error) setImage(null)
         else setImage(responseJSON.medias[0].url)
-        console.log(responseJSON.medias[0])
     }
     useEffect(() => {
         fetchProduct();

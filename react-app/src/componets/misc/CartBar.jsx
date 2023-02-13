@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function CartBar() {
     }, [user])
     return (
         <div id='CartBar' onClick={() => handleCart()}>
-            <img id="CartBar-i1" src="/cart-icon.png"/>
+            <img id="CartBar-i1" alt="image" src="/cart-icon.png"/>
             <span className="headerspanbot">Cart</span>
         </div>
     )

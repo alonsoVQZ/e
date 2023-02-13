@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import "./style/Banner.css"
 
@@ -23,10 +22,10 @@ function Banner() {
     return (
         <div id='Banner'>
             <div id='Banner-d1'>
-                <img id='Banner-d1i1' src='/less_than.png' onClick={() => handlePrevious()}/>
-                <img id='Banner-d1i2' src='/more_than.png' onClick={() => handleNext()}/>
+                <img id='Banner-d1i1' src='/less_than.png' alt="image" onClick={() => handlePrevious()}/>
+                <img id='Banner-d1i2' src='/more_than.png' alt="image" onClick={() => handleNext()}/>
             </div>
-            <img id='Banner-i1' src={ads[number]} /> 
+            <img id='Banner-i1' alt="image" src={ads[number]} /> 
         </div>
     )
 }

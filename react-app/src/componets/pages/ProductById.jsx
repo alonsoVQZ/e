@@ -25,7 +25,6 @@ function ProductById() {
         const response = await dispatch(productIdFunction(productId))
         if(response.error) setProduct(null)
         else setProduct(response)
-        console.log(response)
         setLoad(true)
     }
 
