@@ -1,50 +1,69 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-import { userSignInFunction } from "../../../../store/user"
+import { userSignInFunction, userSignUpFunction } from "../../store/user";
 
-import './style/SignInForm.css'
+import './style/SignUpForm.css'
 
 function SignUpForm() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [emailError, setEmailError] = useState("")
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSignUp = async () => {
+        const form = { firstName, lastName, email, password }
+        const response = await dispatch(userSignUpFunction(form))
+        if(response.error) setEmailError(response.error)
+        else navigate("/")
+    }
+
     return (
-        <div id="SignInPersonalAccount">
-            <h1>Create account</h1>
-            <form>
-                <div>
-                    <label for="">Your Name</label>
-                    <input type="" name="" value="" placeholder="First and last name"/>
+        <div id="SignUpForm">
+            <div id="SignUpForm-d1">
+                <span id="SignUpForm-d1s1">Create account</span>
+            </div>
+            <form id="SignUpForm-f1">
+                <div className="SignUpForm-divs">
+                    <label className="SignUpForm-labels">First Name</label>
+                    <input className="SignUpForm-inputs" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name"/>
                     {
                         false && <span>Error</span>
                     }
                 </div>
-                <div>
-                    <label for="">Email</label>
-                    <input type="" name="" value="" />
+                <div className="SignUpForm-divs">
+                    <label className="SignUpForm-labels">Last Name</label>
+                    <input className="SignUpForm-inputs" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name"/>
                     {
                         false && <span>Error</span>
                     }
                 </div>
-                <div>
-                    <label for="">Password</label>
-                    <input type="" name="" value="" placeholder="At least 6 characteres"/>
+                <div className="SignUpForm-divs">
+                    <label className="SignUpForm-labels">Email</label>
+                    <input className="SignUpForm-inputs" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
+                    {
+                        (emailError.length > 0) && <span>{emailError}</span>
+                    }
+                </div>
+                <div className="SignUpForm-divs">
+                    <label className="SignUpForm-labels">Password</label>
+                    <input className="SignUpForm-inputs" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 6 characteres"/>
                     {
                         false && <span>Error</span>
                     }
                 </div>
-                <div>
-                    <label for="">Re-enter password</label>
-                    <input type="" name="" value="" />
-                    {
-                        false && <span>Error</span>
-                    }
-                </div>
-                <button type="button">Sign Up</button>
+                <button className="SignUpForm-buttons" onClick={() => handleSignUp()} type="button">Sign Up</button>
             </form>
-            <span>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</span>
-            <div>
+            <div id="SignUpForm-d2">
+                <span>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</span>
+            </div>
+            <div id="SignUpForm-d3">
                     <span>Already have an account? <NavLink to={'/signin'}>Sign in</NavLink></span>
-                    <span>Buying for work? <NavLink to={'/business/signup'}>Create a free business account</NavLink></span>
             </div>
         </div>
     )

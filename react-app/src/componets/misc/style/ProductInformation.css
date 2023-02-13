@@ -26,6 +26,11 @@
     color: #0075ac;
 }
 
+#ProductInformation-d1d1 {
+    display: flex;
+    align-items: center;
+}
+
 #ProductInformation-d1d1s2 {
     font-size:medium;
     font-weight: 500;

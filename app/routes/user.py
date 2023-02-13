@@ -24,7 +24,7 @@ def personal_email():
 
 
 @user.route('/signin', methods=['POST'])
-def personal_sign_in():
+def user_sign_in():
     data = request.json
     account = User.query.get(data["id"])
     if account.check_password(data["password"]):
@@ -37,39 +37,31 @@ def personal_sign_in():
         
 
 
-# @user.route('/signup', methods=['POST'])
-# def personal_sign_up():
-#     data = request.json
-#     account = user.query.filter((user.email == data["email"])).first()
-#     if account:
-#         login_user(account)
-#         new_personal_account = Personal_Account(**{
-#             "account_id": int(current_user.id),
-#             "first_name": data["first_name"],
-#             "last_name": data["last_name"],
-#         })
-#         db.session.add(new_personal_account)
-#         db.session.commit()
-#         return new_personal_account.data()
-#     else:
-#         new_account = user(**{ "email": data["email"], "password": data["password"] })
-#         db.session.add(new_account)
-#         db.session.commit()
-#         login_user(new_account)
-#         new_personal_account = Personal_Account(**{
-#             "account_id": int(current_user.id),
-#             "first_name": data["first_name"],
-#             "last_name": data["last_name"],
-#         })
-#         db.session.add(new_personal_account)
-#         db.session.commit()
-#         return new_personal_account.data()
+@user.route('/signup', methods=['POST'])
+def user_sign_up():
+    data = request.json
+    account = User.query.filter_by(email=data["email"]).first()
+    if account:
+        return { "error": "An account with this email is arleady in use."}
+    else:
+        print("********************")
+        print(data)
+        new_user = User(**{
+            "first_name": data["firstName"],
+            "last_name": data["lastName"],
+            "email": data["email"],
+            "password": data["password"],
+        })
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user)
+        return new_user.data()
 
 
-# @user.route('/signout')
-# @login_required
-# def personal_signout():
-#     logout_user()
-#     return {
-#         "message": "Logged out successfully"
-#     }
+@user.route('/signout')
+@login_required
+def user_signout():
+    logout_user()
+    return {
+        "message": "Logged out successfully"
+    }

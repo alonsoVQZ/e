@@ -18,15 +18,21 @@
 
 #ProductsList-d2d2 {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
 }
 
 #ProductsList-ul1 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, max-content));
+    gap: 10px;
     list-style: none;
     margin: 0px;
     padding: 0px;
 }
-
+/* 
 
 
 #ProductsList-d2d2ul1l11d2s1 {
@@ -73,4 +79,4 @@
 
 .ProductsList-itemDiv2Content {
     margin: 2px 0px;
-}
+} */

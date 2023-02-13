@@ -3,9 +3,9 @@ import './style/Footer.css'
 function Footer() {
     return (
         <div id="Footer">
-            <div id="Footer-d1" className='Footer-Divs'>
+            {/* <div id="Footer-d1" className='Footer-Divs'>
                 <span>Back to top</span>
-            </div>
+            </div> */}
             <div id="Footer-d2" className='Footer-Divs'>
                 <img id="Footer-d2i1" src="/amazon-logo-white.png" />
             </div>

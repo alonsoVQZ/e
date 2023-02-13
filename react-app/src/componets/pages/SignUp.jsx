@@ -1,5 +1,5 @@
 
-import SignUpForm from '../forms/UserForms/SignUpForm'
+import SignUpForm from '../forms/SignUpForm'
 
 import './style/SignUp.css'
 
@@ -7,10 +7,10 @@ import './style/SignUp.css'
 function SignUp() {
     return (
         <div id="SignUp">
-            <img src="/amazon-logo.png" alt="amazon-logo" style={ { width: '100px'} }/>
+            <img id="SignUp-i1" src="/amazon-logo-black.png" />
             <SignUpForm />
-            <div id='SignIn-d2'>
-                <ul>
+            <div id='SignUp-d1'>
+                <ul id='SignUp-d1ul1'>
                     <li>Conditions of Use</li>
                     <li>Privacy Notice</li>
                     <li>Help</li>

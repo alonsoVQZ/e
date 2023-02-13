@@ -20,3 +20,6 @@ from .sellers import Seller
 from .products import Product
 from .departments import Department
 from .medias import Media
+from .orders import Order
+from .reviews import Review
+from .orders_products import OrderProduct

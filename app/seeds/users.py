@@ -7,7 +7,6 @@ def seed_users():
             last_name = 'User',
             email = 'demo@user.com',
             password = '123456',
-            prime = True
         ),
     ]
     db.session.add_all(objects)

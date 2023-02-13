@@ -1,27 +1,41 @@
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./style/FourItemsCard.css"
 
-function FourItemsCard({ title="asdasdasd"}) {
+function FourItemsCard({ title }) {
     return (
         <div id="FourItemsCard">
             <span id="FourItemsCard-s1">{title}</span>
             <div id="FourItemsCard-d1">
-                <div className="FourItemsCard-item">
-                    <img className="FourItemsCard-image" src="" alt="" />
-                    <span className="FourItemsCard-span">Item</span>
-                </div>
-                <div className="FourItemsCard-item">
-                    <img className="FourItemsCard-image" src="" alt="" />
-                    <span className="FourItemsCard-span">Item</span>
-                </div>
-                <div className="FourItemsCard-item">
-                    <img className="FourItemsCard-image" src="" alt="" />
-                    <span className="FourItemsCard-span">Item</span>
-                </div>
-                <div className="FourItemsCard-item">
-                    <img className="FourItemsCard-image" src="" alt="" />
-                    <span className="FourItemsCard-span">Item</span>
-                </div>
+                <Product />
+                <Product />
+                <Product />
+                <Product />
             </div>
+        </div>
+    )
+}
+
+function Product() {
+    const navigate = useNavigate()
+    const [image, setImage] = useState()
+    const [id, setId] = useState(Math.floor(Math.random() * 16) + 1);
+    const fetchProduct = async () => {
+        const response = await fetch(`/api/products/main/${id}`)
+        const responseJSON = await response.json();
+        if(responseJSON.error) setImage(null)
+        else setImage(responseJSON.medias[0].url)
+        console.log(responseJSON.medias[0])
+    }
+    useEffect(() => {
+        fetchProduct();
+    }, [])
+
+    const handleProduct = () => navigate(`/products/${id}`)
+
+    return (
+        <div onClick={() => handleProduct()} className="Product">
+            <img className="Product-image" src={image}/>
         </div>
     )
 }

@@ -10,14 +10,14 @@ function Root() {
                 <Banner />
             </div>
             <div id="Root-d2">
-                <FourItemsCard />
-                <FourItemsCard />
-                <FourItemsCard />
-                <FourItemsCard { ...{ title: "Buy Again" } }/>
-                <FourItemsCard />
-                <FourItemsCard />
-                <FourItemsCard />
-                <FourItemsCard />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
+                <FourItemsCard { ...{ title: "Products" } } />
             </div>
         </div>
     )

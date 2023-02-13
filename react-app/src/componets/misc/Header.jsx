@@ -29,7 +29,7 @@ function Header() {
                 </div>
             </div>
             <nav id='Header-n1'>
-                <ul id='Header-n1ul1'>
+                {/* <ul id='Header-n1ul1'>
                     <li className="Header-list">All</li>
                     <li className="Header-list">Customer Service</li>
                     <li className="Header-list">Best Sellers</li>
@@ -37,7 +37,7 @@ function Header() {
                     <li className="Header-list">Today's Deals</li>
                     <li className="Header-list">Prime</li>
                     <li className="Header-list">New Releases</li>
-                </ul>
+                </ul> */}
             </nav>
         </div>
     )

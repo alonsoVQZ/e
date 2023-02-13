@@ -7,25 +7,26 @@ const USER_SIGN_UP = 'user/signUp';
 const USER_SIGN_OUT = 'user/signOut';
 
 
-const userSessionAction = (account) => {
+const userSessionAction = (user) => {
     return {
         type: USER_SESSION,
-        account
+        user
     }
 }
 
 
-const userSignInAction = (account) => {
+const userSignInAction = (user) => {
     return {
         type: USER_SIGN_IN,
-        account
+        user
     }
 }
 
 
-const userSignUpAction = () => {
+const userSignUpAction = (user) => {
     return {
         type: USER_SIGN_UP,
+        user
     }
 }
 
@@ -57,21 +58,40 @@ export const userSignInFunction = (data) => async (dispatch) => {
     return responseJSON;
 };
 
+export const userSignUpFunction = (data) => async (dispatch) => {
+    const response = await fetch("/api/user/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/JSON" },
+        body: JSON.stringify(data),
+    });
+    const responseJSON = await response.json();
+    if(responseJSON.error) return responseJSON;
+    dispatch(userSignUpAction(responseJSON));
+    return responseJSON;
+};
+
+export const userSignOutFunction = () => async (dispatch) => {
+    const response = await fetch("/api/user/signout");
+    const responseJSON = await response.json();
+    dispatch(userSignOutAction());
+    return responseJSON;
+};
+  
 
 function userReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case USER_SESSION:
-            newState = { ...action.account };
+            newState = { ...action.user };
             return newState;
         case USER_SIGN_IN:
-            newState = { ...action.account };
+            newState = { ...action.user };
             return newState;
         case USER_SIGN_UP:
-            newState = state;
+            newState = { ...action.user };
             return newState;
         case USER_SIGN_OUT:
-            newState = state;
+            newState = initialState;
             return newState;
         default:
             return state;

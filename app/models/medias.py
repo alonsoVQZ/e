@@ -1,7 +1,6 @@
 from . import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 
-
 class Media(db.Model):
     __tablename__ = 'Medias'
 
@@ -9,19 +8,18 @@ class Media(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Products.id'), nullable=False)
 
     url = db.Column(db.String, nullable = False)
-    mediaable_id = db.Column(db.Integer, nullable=False)
-    mediaable_type = db.Column(db.Enum('product', 'review', name="mediaable_types"), nullable=False)
     
+    product = db.relationship("Product", back_populates="medias")
+
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-
     def data(self):
         return {
-            self.id,
-            self.url,
-            self.mediaable_id,
-            self.mediaable_type,
+            "id": self.id,
+            "product_id": self.product_id,
+            "url": self.url,
         }

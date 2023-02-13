@@ -19,3 +19,12 @@
     display: flex;
     justify-content: center;
 }
+
+#ProductById-d3 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+    box-sizing: border-box;
+}

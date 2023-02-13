@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate  } from "react-router-dom";
 
 
-import { userSignInFunction } from "../../../../store/user";
+import { userSignInFunction } from "../../store/user";
 
 
 import './style/SignInForm.css'
@@ -15,8 +15,10 @@ function SignInForm() {
         setForm(<SignInFormEmail { ...{ setForm } }/>)
     }, [])
     return (
-        <div id="SignInPersonalAccount">
-            <h1>Sign in</h1>
+        <div id="SignInForm">
+            <div id="SignInForm-d1">
+                <span id="SignInForm-d1s1">Sign in</span>
+            </div>
             { form }
         </div>
     )
@@ -24,6 +26,8 @@ function SignInForm() {
 
 
 function SignInFormEmail({ setForm }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [backendErrors, setBackendErrors] = useState("")
     const [showBackendErrors, setShowBackendErrors] = useState(false)
     const [frontendErrors, setFrontendErrors] = useState("")
@@ -51,6 +55,11 @@ function SignInFormEmail({ setForm }) {
         return
     }
 
+    const handleDemoUser = async () => {
+        await dispatch(userSignInFunction({ id: 1, password: "123456" }));
+        navigate('/');
+    }
+
     useEffect(() => {
         const errors = [];
         if(email.length === 0) errors.push('- Enter your email')
@@ -58,17 +67,18 @@ function SignInFormEmail({ setForm }) {
         setFrontendErrors(errors)
     }, [email]);
     return (
-        <div>
+        <div id="SignInFormEmail">
             {
                 showBackendErrors && <span>{backendErrors}</span>
             }
-            <form className="class-SignInForm">
-                <label for="">Email</label>
-                <input type="email" name="" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <form className="SignInForm-forms">
+                <label className="SignInForm-labels" for="">Email</label>
+                <input className="SignInForm-inputs" type="email" name="" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 {
                     showFrontendErrors && <span>Enter your email</span>
                 }
-                <button type="button" onClick={(e) => handleContinue(e)}>Continue</button>
+                <button className="SignInForm-buttons" type="button" onClick={(e) => handleContinue(e)}>Continue</button>
+                <button className="SignInForm-buttons-demouser" type="button" onClick={(e) => handleDemoUser(e)}>Sign In as a Demo User</button>
             </form>
             <span>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</span>
         </div>
@@ -123,25 +133,18 @@ function SignInFormPassword({ setForm, data }) {
 
 
     return (
-        <div>
+        <div id="SignInFormPassword">
             {
                 showBackendErrors && <span>{backendErrors}</span>
             }
-            <p>{ data.email } <span onClick={(e) => handleCahnge(e)}>Change</span></p>
-            <form className="class-SignInForm">
-                <div>
-                    <label for="">Password</label>
-                    <span>Forgot your password?</span>
-                </div>
-                <input type="password" name="" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <p>{ data.email } <span  id="SignInFormPassword-span" onClick={(e) => handleCahnge(e)}>Change</span></p>
+            <form className="SignInForm-forms">
+                <label className="SignInForm-labels" for="">Password</label>
+                <input className="SignInForm-inputs" type="password" name="" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 {
                     showFrontendErrors && <span>Enter your password</span>
                 }
-                <button type="button" onClick={(e) => handleSignIn(e)}>Sign In</button>
-                <div>
-                    <input type="checkbox" name="" value="" />
-                    <span>Keep me signed in. Details</span>
-                </div>
+                <button className="SignInForm-buttons" type="button" onClick={(e) => handleSignIn(e)}>Sign In</button>
             </form>
         </div>
     )
