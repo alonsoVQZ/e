@@ -1,4 +1,5 @@
 from app.models import db, environment, SCHEMA, User
+from sqlalchemy.sql import text
 
 def seed_users():
     objects = [
@@ -15,7 +16,7 @@ def seed_users():
 
 def undo_users():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.Users RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.Users RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute("DELETE FROM Users")
 
