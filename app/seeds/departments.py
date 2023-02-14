@@ -1,4 +1,5 @@
-from app.models import db, environment, SCHEMA, Department
+from app.models import db, environment, SCHEMA,Department
+from sqlalchemy.sql import text
 
 def seed_departments():
     objects = [
@@ -23,7 +24,7 @@ def seed_departments():
 
 def undo_departments():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.Departments RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.Departments RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute("DELETE FROM Departments")
 
