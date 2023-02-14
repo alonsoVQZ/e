@@ -1,4 +1,5 @@
 from app.models import db, environment, SCHEMA, Media
+from sqlalchemy.sql import text
 
 def seed_medias():
     objects = [
@@ -205,7 +206,7 @@ def seed_medias():
 
 def undo_medias():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.Medias RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.Medias RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute("DELETE FROM Medias")
 

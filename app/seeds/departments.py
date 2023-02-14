@@ -1,4 +1,4 @@
-from app.models import db, environment, SCHEMA,Department
+from app.models import db, environment, SCHEMA, Department
 from sqlalchemy.sql import text
 
 def seed_departments():

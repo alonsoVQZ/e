@@ -1,4 +1,5 @@
 from app.models import db, environment, SCHEMA, Seller
+from sqlalchemy.sql import text
 
 def seed_sellers():
     objects = [
@@ -22,7 +23,7 @@ def seed_sellers():
 
 def undo_sellers():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.Sellers RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.Sellers RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute("DELETE FROM Sellers")
 
