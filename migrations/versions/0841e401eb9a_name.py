@@ -1,8 +1,8 @@
 """name
 
-Revision ID: c68530fb18ed
+Revision ID: 0841e401eb9a
 Revises: 
-Create Date: 2023-02-13 14:14:32.050657
+Create Date: 2023-02-13 17:56:29.630913
 
 """
 from alembic import op
@@ -13,8 +13,9 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = 'c68530fb18ed'
+revision = '0841e401eb9a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -106,6 +107,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+    
+
     if environment == "production":
         op.execute(f"ALTER TABLE Deparments SET SCHEMA {SCHEMA};")
     if environment == "production":
