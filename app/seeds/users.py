@@ -21,3 +21,5 @@ def undo_users():
         db.session.execute("DELETE FROM Users")
 
     db.session.commit()
+
+    
